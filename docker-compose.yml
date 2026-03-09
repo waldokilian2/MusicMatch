@@ -1,8 +1,6 @@
 services:
   music-match:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/waldokilian2/musicswipe:latest
     ports:
       - "3000:3000"
     environment:

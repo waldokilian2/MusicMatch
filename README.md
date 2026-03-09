@@ -33,6 +33,39 @@ Open http://localhost:3000
 | `bun run db:reset` | Reset database |
 | `bunx prisma studio` | Open database GUI |
 
+## Docker Deployment
+
+### Using Pre-built Image (Recommended)
+
+```bash
+docker run -d \
+  --name music-match \
+  -p 3000:3000 \
+  -v music-data:/app/data \
+  --restart unless-stopped \
+  ghcr.io/waldokilian2/musicswipe:latest
+```
+
+### Using Docker Compose
+
+```bash
+# Clone or copy docker-compose.yml to your server
+docker compose up -d
+```
+
+### Update
+
+```bash
+docker compose pull && docker compose up -d
+```
+
+### Building Locally
+
+```bash
+docker build -t music-match .
+docker run -p 3000:3000 -v music-data:/app/data music-match
+```
+
 ## Project Structure
 
 ```
