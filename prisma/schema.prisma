@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:/home/z/my-project/db/music.db"
+}
+
+model Song {
+  id            String    @id @default(cuid())
+  iTunesId      Int       @unique
+  name          String
+  artist        String
+  album         String?
+  artworkUrl    String
+  previewUrl    String
+  trackViewUrl  String?
+  dominantColor String?   @default("#6366f1")
+  likedAt       DateTime?
+  dislikedAt    DateTime?
+  skippedAt     DateTime?
+  createdAt     DateTime  @default(now())
+}
