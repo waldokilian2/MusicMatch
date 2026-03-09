@@ -2,12 +2,13 @@
 
 # Stage 1: Dependencies
 FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache libc6-compat curl
 WORKDIR /app
 
 # Install dependencies
-COPY package.json bun.lock* ./
-RUN npm install -g bun && bun install --frozen-lockfile
+COPY package.json ./
+COPY prisma ./prisma
+RUN npm install --legacy-peer-deps
 
 # Stage 2: Build
 FROM node:20-alpine AS builder
