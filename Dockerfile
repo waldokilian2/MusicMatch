@@ -42,13 +42,15 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
+COPY --from=builder /app/node_modules/.bin ./node_modules/.bin
 
 # Create data directory for SQLite
 RUN mkdir -p /app/data && chown -R nextjs:nodejs /app/data
 
 # Copy startup script
 COPY docker-start.sh /app/docker-start.sh
-RUN chmod +x /app/docker-start.sh
+RUN chmod +x /app/docker-start.sh && chown nextjs:nodejs /app/docker-start.sh
 
 USER nextjs
 
