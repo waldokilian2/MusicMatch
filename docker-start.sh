@@ -2,6 +2,10 @@
 # Startup script for Docker container
 set -e
 
+# Ensure data directory exists
+echo "Ensuring data directory exists..."
+mkdir -p /app/data
+
 # Run database migrations
 echo "Running database migrations..."
 npx prisma db push || {
