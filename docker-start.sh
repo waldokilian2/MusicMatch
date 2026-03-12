@@ -8,7 +8,7 @@ mkdir -p /app/data
 
 # Run database migrations
 echo "Running database migrations..."
-npx prisma db push || {
+./node_modules/.bin/prisma db push || {
     echo "Failed to run database migrations"
     exit 1
 }
